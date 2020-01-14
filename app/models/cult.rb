@@ -34,7 +34,7 @@ class Cult
     end
 
     def average_age # Cult#average_age returns a Float that is the average age of this cult's followers
-        BloodOath.all.select{|oaths| oaths.cult == self}.follower.age.inject(:+) / BloodOath.all.select{|oaths| oaths.cult == self}.length #Test & Convert to float
+        BloodOath.all.select{|oaths| oaths.cult == self}.map{|enum| enum.follower.age}.inject(:+) / BloodOath.all.select{|oaths| oaths.cult == self}.length #Test & Convert to float
     end
 
     def my_followers_mottosprints # Cult#my_followers_mottosprints out all of the mottos for this cult's followers
@@ -49,7 +49,7 @@ class Cult
 
     def self.most_common_locations # Cult.most_common_locationreturns a String that is the location with the most cults
         popularity = Hash.new{0}
-        BloodOath.all.each{|enum| popularity.locations[enum.cult.location] += 1}
+        BloodOath.all.each{|enum| popularity[enum.cult.location] += 1}
         popularity.sort_by {|k, v| v}.first[0]
     end
 

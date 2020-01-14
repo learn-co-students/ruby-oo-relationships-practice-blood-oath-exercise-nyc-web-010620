@@ -17,7 +17,7 @@ class Follower
     end
 
     def join_cult(cult_instance) #Follower#join_cult takes in an argument of a Cult instance and adds this follower to the cult's list of followers
-        BloodOath.new(Time.now.strftime("%Y/%m/%d"),cult_instance, self)
+        self.age >= cult_instance.minimum_age ? BloodOath.new(Time.now.strftime("%Y/%m/%d"),cult_instance, self) : "Too Young To Join"
     end
 
     def self.of_a_certain_age(input_age) #Follower.of_a_certain_age takes an Integer argument that is an age and returns an Array of followers who are the given age or older
@@ -30,19 +30,13 @@ class Follower
 
     def self.most_active #Follower.most_active returns the Follower instance who has joined the most cults
         activity = Hash.new{0}
-        BloodOath.all.each{|enum| popularity.locations[enum.follower] += 1}
+        BloodOath.all.each{|enum| activity[enum.follower] += 1}
         popularity.sort_by {|k, v| v}.first[0]
     end
 
     def self.most_active #Follower.top_ten returns an Array of followers; they are the ten most active followers
         activity = Hash.new{0}
-        BloodOath.all.each{|enum| popularity.locations[enum.follower] += 1}
+        BloodOath.all.each{|enum| activity[enum.follower] += 1}
         popularity.sort_by {|k, v| v}.take(10).map{|enum| enum[0]}
-    end
-
-    def fellow_cult_members #Follower#fellow_cult_members returns a unique Array of followers who are in the same cults as you
-        boolean = Hash.new(false)
-        BloodOath.all.select{|oath| enum.follower == follower}.each{|oath| boolean[oath.cult] = true}
-        
     end
 end
