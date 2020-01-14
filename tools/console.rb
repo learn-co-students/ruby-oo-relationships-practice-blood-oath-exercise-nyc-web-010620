@@ -18,12 +18,12 @@ herb = Follower.new("Herb", 28, "Got Herb?")
 sally = Follower.new("Sally", 24, "About Average Age")
 sandy = Follower.new("Sandy", 12, "I'm 12")
 
-bond = BloodOath.new("today", herbalife, adam) #initiation_date, cult, follower
-bond = BloodOath.new("today", starbucks, adam)
-bond = BloodOath.new("today", herbalife, tom)
-bond = BloodOath.new("today", herbalife, jerry)
-bond = BloodOath.new("today", starbucks, sandy)
-bond = BloodOath.new("today", newmornings, sally)
+bond = BloodOath.new(Time.now.strftime("%Y-%m-%d"), herbalife, adam) #initiation_date, cult, follower
+bond = BloodOath.new(Time.now.strftime("%Y-%m-%d"), starbucks, adam)
+bond = BloodOath.new(Time.now.strftime("%Y-%m-%d"), herbalife, tom)
+bond = BloodOath.new(Time.now.strftime("%Y-%m-%d"), herbalife, jerry)
+bond = BloodOath.new(Time.now.strftime("%Y-%m-%d"), starbucks, sandy)
+bond = BloodOath.new(Time.now.strftime("%Y-%m-%d"), newmornings, sally)
 
 
 binding.pry

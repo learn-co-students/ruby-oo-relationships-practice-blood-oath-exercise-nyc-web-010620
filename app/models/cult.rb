@@ -26,7 +26,7 @@ class Cult
     end
 
     def recruit_follower(follower_instance)# Cult#recruit_follower takes in an argument of a Follower instance and adds them to this cult's list of followers
-        follower_instance.age >= @minimum_age ? BloodOath.new(Time.now.strftime("%Y/%m/%d"), self, follower_instance) : "Ya'll too young" # Cult#recruit_followertakes in an argument of a Follower instance and adds them to this cult's list of followers
+        follower_instance.age >= @minimum_age ? BloodOath.new(Time.now.strftime("%Y-%m-%d"), self, follower_instance) : "Ya'll too young" # Cult#recruit_followertakes in an argument of a Follower instance and adds them to this cult's list of followers
     end
 
     def cult_population # Cult#cult_population returns an Integer that is the number of followers in this cult

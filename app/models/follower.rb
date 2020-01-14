@@ -17,7 +17,7 @@ class Follower
     end
 
     def join_cult(cult_instance) #Follower#join_cult takes in an argument of a Cult instance and adds this follower to the cult's list of followers
-        self.age >= cult_instance.minimum_age ? BloodOath.new(Time.now.strftime("%Y/%m/%d"),cult_instance, self) : "Too Young To Join"
+        self.age >= cult_instance.minimum_age ? BloodOath.new(Time.now.strftime("%Y-%m-%d"),cult_instance, self) : "Too Young To Join"
     end
 
     def self.of_a_certain_age(input_age) #Follower.of_a_certain_age takes an Integer argument that is an age and returns an Array of followers who are the given age or older
