@@ -2,7 +2,7 @@ class BloodOath
     attr_reader :initiation_date, :cult, :follower
 
     @@all = []
-    def initialize(initiation_date, cult, follower)
+    def initialize(initiation_date, cult, follower) #Too lazy to use regex
         @initiation_date, @cult, @follower = initiation_date, cult, follower #BloodOath#initiation_date
         @@all << self
     end

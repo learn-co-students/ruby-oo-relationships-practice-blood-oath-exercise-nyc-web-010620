@@ -5,7 +5,7 @@ class Follower
 
     def initialize(name, age, life_motto)
         @name, @age, @life_motto = name, age, life_motto #Follower#name, #Follower#age, #Follower#life_motto
-        @all << self
+        @@all << self
     end
 
     def self.all #Follower.all returns an Array of all the followers
@@ -25,18 +25,18 @@ class Follower
     end
 
     def my_cults_slogan #Follower#my_cults_slogans prints out all of the slogans for this follower's cults
-        BloodOath.all.select{|oaths| oaths.follower == follower}.map{|oaths| oaths.cult.slogan}
+        BloodOath.all.select{|oaths| oaths.follower == self}.map{|oaths| oaths.cult.slogan}.uniq
     end
 
     def self.most_active #Follower.most_active returns the Follower instance who has joined the most cults
         activity = Hash.new{0}
         BloodOath.all.each{|enum| activity[enum.follower] += 1}
-        popularity.sort_by {|k, v| v}.first[0]
+        activity.sort_by {|k, v| v}.last[0]
     end
 
-    def self.most_active #Follower.top_ten returns an Array of followers; they are the ten most active followers
+    def self.top_ten #Follower.top_ten returns an Array of followers; they are the ten most active followers
         activity = Hash.new{0}
         BloodOath.all.each{|enum| activity[enum.follower] += 1}
-        popularity.sort_by {|k, v| v}.take(10).map{|enum| enum[0]}
+        activity.sort_by{|k, v| v}.reverse.take(10).map{|enum| enum[0]}
     end
 end
